@@ -68,6 +68,10 @@ taken:
 # TODO: Add an example where an instruction passes its result to the 2nd following instruction
 # There should be no stalls
 # ----------------------------------------------------------------------------------------
+    add t0, t1, t2
+    add t3, zero, zero
+    add t1, t0, t3
+
     # nop instructions added between examples
     add  zero, zero, zero  
     add  zero, zero, zero  
@@ -79,6 +83,10 @@ taken:
 #  registers of both of the two instructions preceeding it. It should get the newest value.
 # There should be no stalls
 # ----------------------------------------------------------------------------------------
+    addi t0, zero, 10 
+    addi t0, zero, 20
+    add t1, t0, t0 # this should be 20 + 20 = 40
+
     # nop instructions added between examples
     add  zero, zero, zero  
     add  zero, zero, zero  
@@ -88,6 +96,9 @@ taken:
 # TODO: Add an example with a load stalling for 1 cycle to pass a value to a NOT-TAKEN branch 
 #  Is this a data hazard or a control hazard?
 # ----------------------------------------------------------------------------------------
+    lw   t0, 4(a0)
+    beq  t0, zero, next
+
     # nop instructions added between examples
     add  zero, zero, zero  
     add  zero, zero, zero  
@@ -96,6 +107,11 @@ taken:
 # ----------------------------------------------------------------------------------------
 # TODO: Add an example with taken branch to a label which is immediately following the branch
 # ----------------------------------------------------------------------------------------
+
+    beq zero, zero, mylabel
+mylabel:
+    add  zero, zero, zero  
+    add  zero, zero, zero
 
 
 
